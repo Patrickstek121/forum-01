@@ -1,0 +1,39 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url("../img/Loginbackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+input[type=text], input[type=password], input[type=email] {
+    padding-bottom: 14px;
+    padding-top: 14px;
+    margin-bottom: 5%;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.registreren {
+    margin: auto;
+    width: 35%;
+    border: 3px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Century Gothic", Georgia, Serif;
+    background-color: white;
+}
+
+.signupbtn {
+    width: 80%;
+    padding: 10px 10px;
+    margin-left: 10%;
+    border: 1px solid #f0e6d2;
+    border-radius: 5px;
+
+}
+
+label {
+    margin-left: 10%;
+}
+
