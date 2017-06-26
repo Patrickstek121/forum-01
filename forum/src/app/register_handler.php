@@ -1,29 +1,28 @@
 <?php
-session_start();
 require 'dbconnect.php';
 
-$message = false;
+
 
 if (isset($_POST['signupbtn'])) {
-    $username = htmlentities($_POST['username']);
-    $email = htmlentities($_POST['email']);
-    $password = htmlentities($_POST['password']);
-    $conpassword = htmlentities($_POST['conpassword']);
+    $username = htmlentities( $_POST['username']);
+    $email = htmlentities( $_POST['email']);
+    $password = htmlentities( $_POST['password']);
+    $conpassword = htmlentities( $_POST['conpassword']);
     if (!$username || !$password || !$email || !$conpassword) {
-        $message = "Alle invoer velden zijn verplicht";
+        $_SESSION['error'] = "Alle velden zijn verplicht";
 
     } elseif ($password != $conpassword) {
-        $message = "De wachtwoorden komen niet overheen met elkaar";
+        $_SESSION['error'] = "De wachtwoorden komen niet overheen met elkaar";
 
     } else {
-        $statement = $connect->prepare("SELECT * FROM users WHERE username = :username AND email = :email");
+        $statement = $connect->prepare("SELECT username,email FROM users WHERE username = :username AND email = :email");
         $statement->execute([
             ':username' => $username,
             ':email' => $email
 
         ]);
         if ($statement->rowCount() > 0) {
-            $message = "De ingevulde user is al in gebruik.";
+            $_SESSION['error'] = "De ingevulde user is al in gebruik.";
         } else {
             $statement = $connect->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
             $statement->execute([
@@ -31,7 +30,7 @@ if (isset($_POST['signupbtn'])) {
                 ':password' => sha1($password),
                 ':email' => $email
             ]);
-            header("location: login.php");
+            header("location: index.php");
         }
     }
 }

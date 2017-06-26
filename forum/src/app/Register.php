@@ -1,11 +1,18 @@
 <?php
+
 include_once "authentication.php";
 include_once "head.php";
+include_once "register_handler.php";
+
 
 ?>
     <link rel="stylesheet" href="../css/register.css" type="text/css">
 
-    <form class="registreren" method="post" action="register_handler.php">
+    <form class="registreren" method="post">
+        <?php if(isset($_SESSION['error'])): ?>
+            <p class="message"><?= $_SESSION['error'] ?></p>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
         <p><h2>Registreren</h2></p>
         <label>Gebruikersnaam</label>
         <br>
