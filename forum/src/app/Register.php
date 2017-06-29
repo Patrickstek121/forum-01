@@ -4,6 +4,12 @@ include_once "authentication.php";
 include_once "head.php";
 include_once "register_handler.php";
 
+// wanneer je bent ingelogt kan die niet naar register.php
+if( isset($_SESSION['username'])!="" ){
+    header("Location: index.php");
+    exit;
+}
+
 
 ?>
     <link rel="stylesheet" href="../css/register.css" type="text/css">
